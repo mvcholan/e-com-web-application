@@ -1,0 +1,32 @@
+{% extends 'layout/main.html' %}
+{% block title %}
+   Favourite | Online Shoping
+{% endblock title %}
+{% block content %}
+<section class="bg-light py-4 my-5" style="min-height: 600px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h4 class="mb-3">Favourite</h4>
+                <hr style="border-color:#b8bfc2;">
+            </div>
+{% for item in fav %}
+    <div class="col-md-4 col-lg-3 text-center ">
+        <div class="card my-3 ">
+            <img src="{{item.product.product_image.url}}" class="card-image-top images"  alt="{{item.product.name}}">
+           
+            <div class="card-body">
+                <a href="{% url 'product_details' item.product.category item.product.name %}">
+                <h5 class="card-title text-primary">{{item.product.name}}</h5>
+                <p class="card-text">
+                    <span class="float-start old_price"><s>Rs.{{item.product.original_price | stringformat:'d'}} </s></span>
+                    <span class="float-end new_price">Rs.{{item.product.selling_price | stringformat:'d'}}</span>
+                </p>
+                </a>
+            </div>
+            </a>
+        </div>
+    </div>
+{% endfor %}
+</section>
+{% endblock  %}
